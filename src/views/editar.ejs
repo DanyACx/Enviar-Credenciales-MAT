@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="styles.css" rel="stylesheet">
+    <title>Acceso MAT</title>
+</head>
+<body>
+    
+      <% if (usuario) { %>
+      <div class="container mt-4">
+          
+          <div class="card border-secondary">  
+                <div class="card-header">Editar Registro</div>
+                <div class="card-body">
+                    <form action="/actualizarUsuario" method="POST">
+                         <input id="id" name="id" value="<%= usuario._id %>" hidden>
+
+                        <div class="mb-3">
+                          <label for="user" class="form-label">Tipo Documento</label>
+                          <input type="text" class="form-control" id="tipoDocumento" name="tipoDocumento" tabindex="1" value="<%= usuario.tipoDocumento  %>" readonly>                        
+                        </div>   
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">N° DOCUMENTO</label>
+                            <input type="text" class="form-control" id="numDocumento" name="numDocumento" tabindex="2" value="<%= usuario.numDocumento  %>" readonly>                        
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">NOMBRES</label>
+                            <input type="text" class="form-control" id="nombres" name="nombres" tabindex="3" value="<%= usuario.nombres  %>" readonly>                        
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">APELLIDO PATERNO</label>
+                            <input type="text" class="form-control" id="apellidoPat" name="apellidoPat" tabindex="4" value="<%= usuario.apellidoPat  %>" readonly>                        
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">APELLIDO MATERNO</label>
+                            <input type="text" class="form-control" id="apellidoMat" name="apellidoMat" tabindex="5" value="<%= usuario.apellidoMat  %>" readonly>                        
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">SEXO</label>
+                            <input type="text" class="form-control" id="sexo" name="sexo" tabindex="6" value="<%= usuario.sexo  %>" readonly>                        
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">CODIGO ALUMNO</label>
+                            <input type="text" class="form-control" id="codAlumno" name="codAlumno" tabindex="7" value="<%= usuario.codAlumno  %>" readonly>                        
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">FACULTAD</label>
+                            <input type="text" class="form-control" id="facultad" name="facultad" tabindex="8" value="<%= usuario.facultad  %>" readonly>                        
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">SITUACION</label>
+                            <input type="text" class="form-control" id="situacion" name="situacion" tabindex="9" value="<%= usuario.situacion  %>" readonly>                        
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">CORREO PERSONAL</label>
+                            <input type="text" class="form-control" id="correoPersonal" name="correoPersonal" tabindex="10" value="<%= usuario.correoPersonal  %>">                        
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">CORREO INSTITUCIONAL</label>
+                            <input type="text" class="form-control" id="correoIns" name="correoIns" tabindex="11" value="<%= usuario.correoIns  %>">                        
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">ACCESO ESPECIAL</label>
+                            <input type="text" class="form-control" id="accesoEspecial" name="accesoEspecial" tabindex="12" value="<%= usuario.accesoEspecial  %>">                        
+                        </div> 
+
+                        <div class="mb-3">
+                            <label for="user" class="form-label">CLAVE</label>
+                            <input type="text" class="form-control" id="clave" name="clave" tabindex="13" value="<%= usuario.clave  %>">                        
+                        </div> 
+
+                        <div class="mb-3">
+                          <label for="rol" class="form-label">ESTADO</label>
+                          <select id="estado" name="estado" class="form-select"  value="" tabindex="14">
+                            <option <%- usuario.estado=='No Leído' ? "selected" : "" %> value="No Leído">No Leído</option>
+                            <option <%- usuario.estado=='Pendiente' ? "selected" : "" %> value="Pendiente">Pendiente</option>
+                            <option <%- usuario.estado=='Atendido' ? "selected" : "" %> value="Atendido">Atendido</option>
+                          </select>
+                        </div>                         
+
+                        <button type="submit" class="btn btn-primary" tabindex="5">Guardar</button>
+                        <a href="/" class="btn btn-secondary">Cancelar</a>
+                    </form>
+       
+                </div>
+            </div>     
+      </div>
+      <% } %>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+</body>
+</html>
