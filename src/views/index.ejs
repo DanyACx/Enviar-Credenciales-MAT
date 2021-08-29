@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap5.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.0.0/css/buttons.dataTables.min.css">
     <title>Acceso MAT</title>
     
 </head>
@@ -51,12 +53,14 @@
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap5.min.js"></script>        
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/dataTables.buttons.min.js"></script>   
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>   
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>   
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>   
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.html5.min.js"></script>   
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.0.0/js/buttons.print.min.js"></script>   
 
     <script>
-       /*  let url = '/obtenerUsuarios';
-        let opcion = null;
-        let tipoDocumento, numDocumento, nombres, apellidoPat, apellidoMat, sexo, codAlumno, facultad, situacion, correoPersonal, correoIns, accesoEspecial, clave, estado, fila; */
-
         //MOSTRAR
         $('#tablaUsuarios').DataTable({
             ajax: {
@@ -64,24 +68,24 @@
                 dataSrc: ""
             },
             columns: [
-                {"data": "_id"},
-                {"data": "tipoDocumento"},
-                {'data': 'numDocumento'},
-                {"data": "nombres"},
-                {"data": "apellidoPat"},
-                {"data": "apellidoMat"},
-                {"data": "sexo"},
-                {"data": "codAlumno"},
-                {"data": "facultad"},
-                {"data": "situacion"},
-                {"data": "correoPersonal"},
-                {"data": "correoIns"},
-                {"data": "accesoEspecial"},
-                {"data": "clave"},
-                {"data": "estado"},
-                {"data": null,
+                {data: "_id"},
+                {data: "tipoDocumento"},
+                {data: 'numDocumento'},
+                {data: "nombres"},
+                {data: "apellidoPat"},
+                {data: "apellidoMat"},
+                {data: "sexo"},
+                {data: "codAlumno"},
+                {data: "facultad"},
+                {data: "situacion"},
+                {data: "correoPersonal"},
+                {data: "correoIns"},
+                {data: "accesoEspecial"},
+                {data: "clave"},
+                {data: "estado"},
+                {data: null,
                     "render": function (data) { 
-                        return '<a href="/editarUsuario/'+data._id+'" class="btn btn-info"><i class="fas fa-edit"></i></a><a onclick="confirmar('+data._id+')" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>'                           
+                        return '<a href="/editarUsuario/'+data._id+'" class="btn btn-warning"><i class="fas fa-edit"></i></a> <a onclick="confirmar(\'' + data._id + '\')" class="btn btn-success"><i class="far fa-envelope"></i></a>'                           
                         }
                 }
             ],
@@ -113,10 +117,26 @@
                     "previous": "Anterior"
                 }
             },
+            dom: 'Bfrtip',
+            buttons: ['excel', 'pdf'],
             pageLength : 5,
             lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']]     
         });
 
+        function confirmar(_id) {
+            Swal.fire({
+            title: '¿Desea enviar credenciales de acceso al MAT?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#11A047', 
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Confirmar'
+            }).then((result) => {
+                if (result.isConfirmed) {   
+                    window.location = '/enviarCredenciales/'+_id;                              
+                }
+            });
+        };
     </script>
 
 </body>

@@ -87,6 +87,7 @@
                           <label for="rol" class="form-label">ESTADO</label>
                           <select id="estado" name="estado" class="form-select"  value="" tabindex="14">
                             <option <%- usuario.estado=='No Leído' ? "selected" : "" %> value="No Leído">No Leído</option>
+                            <option <%- usuario.estado=='En Proceso' ? "selected" : "" %> value="En Proceso">En Proceso</option>
                             <option <%- usuario.estado=='Pendiente' ? "selected" : "" %> value="Pendiente">Pendiente</option>
                             <option <%- usuario.estado=='Atendido' ? "selected" : "" %> value="Atendido">Atendido</option>
                           </select>

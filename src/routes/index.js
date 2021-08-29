@@ -21,6 +21,7 @@ module.exports = app => {
     router.delete('/eliminarUsuario/:id', usuario.eliminarUsuario);
     router.post('/actualizarUsuario', usuario.actualizarUsuario);
     router.get('/editarUsuario/:idUsuario', usuario.editarUsuario);
+    router.get('/enviarCredenciales/:idUsuario', usuario.enviarEmail);
 
     app.use(router);
 }

@@ -2,6 +2,7 @@ ctrl = {};
 
 const usuarioService = require('../services/usuarioService');
 const respuestaModel = require('../models/RespuestaModel');
+const emailService = require('../services/emailService');
 var mongoose = require('mongoose');
 
 ctrl.crearUsuario = async (req, res) => {
@@ -83,7 +84,20 @@ ctrl.editarUsuario = async (req, res) => {
                 res.render('editar', {usuario: userObtenido});    
             }
     } catch (error) {
-        console.error();
+        console.log(error);
+        res.status(500).json({mensaje: "Ocurrio un error en el Servidor"})
+    }
+}
+
+ctrl.enviarEmail = async (req, res) => {
+    try {
+            let enviar = await emailService.enviarEmail(req.params.idUsuario);
+
+            if(enviar){
+                res.redirect('/');   
+            }
+    } catch (error) {
+        console.log(error);
         res.status(500).json({mensaje: "Ocurrio un error en el Servidor"})
     }
 }
